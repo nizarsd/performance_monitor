@@ -1,0 +1,29 @@
+To connect the ESP8266 to arduino nano use the following connection 
+
+	- Voltage divider is needed for the RX of the ESP since the Arduino talks 5.0V and the ESP talks 3.3V
+	- I can connect and see wifi networks now
+	- Connected to my iphone hotspot 
+
+Next: try to connect to an AP and transfer data to mobile or pc 
+
+[08-02-2018] 
+	For reliable communication ESP's baud rate must be set to 9600. This can be done by sending AT command as follows, EspSerial.write("AT+CIOBAUD=9600");
+
+[08-03-2018] 
+	ESP is configured as TCP server and python script telent client. I'm now sending data to python over wifi successively 
+	Working scripts
+		- wifi_send_data.ino
+		- telnet_client.py
+
+
+[08-15-2018] 
+	- I'm now sending data to python as udp packets. This ADC shield is now added (ADS1115) and used to sense the photo resisitance voltage. 
+	- The main issue is that it's much slower than the built in ADC on the Arduino nano (one order of magnitude slower). 
+	- The ESP8266 baud rate is increased now to 38400  	
+	Working scripts
+		- UdpSendReceiveSensor_v2.ino (firmware)
+		- socketRealTimePlotV2.py (data sink)
+
+[08-16-2018]
+	-  Conversion speed is improved by reducing ADS1115_CONVERSIONDELAY to (1) instead of (8) at [HOME]/sketchbook/libraries/Adafruit_ADS1X15/Adafruit_ADS1015.h
+	
